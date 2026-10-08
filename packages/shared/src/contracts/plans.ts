@@ -132,7 +132,8 @@ const ULTIMATE: PlanLimits = {
 export const SELF_HOSTED_LIMITS: PlanLimits = {
   apps: null,
   keywordMarkets: null,
-  competitorsPerApp: INDIE.competitorsPerApp,
+  // Our fork: no competitor cap on a self hosted instance (upstream keeps the Indie plan's 10).
+  competitorsPerApp: null,
   apiRequestsPerMinute: null,
   apiWritesPerMinute: null,
   apiRequestsPerDay: null,

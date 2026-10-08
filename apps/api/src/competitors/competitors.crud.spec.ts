@@ -5,7 +5,6 @@ import { SubtitleBackfill } from '../apps/subtitle-backfill.service';
 import { KeywordsService } from '../keywords/keywords.service';
 import { ConfigService } from '@nestjs/config';
 import { QuotaService } from '../auth/quota.service';
-import { QuotaExceededError } from '../auth/quota.errors';
 import { Env } from '../config/env';
 import { WorkspaceContext } from '../common/tenancy/workspace-context';
 import { DEFAULT_WORKSPACE_ID } from '../common/tenancy/default-workspace';
@@ -168,13 +167,13 @@ describe('CompetitorsService.add', () => {
     expect(getApp).not.toHaveBeenCalled();
   });
 
-  it('rejects once the competitor cap is reached', async () => {
-    const { service, workspace } = buildDeps(10);
+  it('does not cap competitors on a self hosted instance', async () => {
+    const { service, workspace } = buildDeps(50);
 
     await expect(
       workspace.run(DEFAULT_WORKSPACE_ID, () =>
         service.add('primary', 'https://apps.apple.com/us/app/rival/id999'),
       ),
-    ).rejects.toBeInstanceOf(QuotaExceededError);
+    ).resolves.toBeDefined();
   });
 });

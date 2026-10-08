@@ -192,10 +192,8 @@ describe('plan limits', () => {
     });
   });
 
-  it('keeps the competitor cap on a self hosted instance', () => {
-    expect(SELF_HOSTED_LIMITS.competitorsPerApp).toBe(
-      PLAN_LIMITS.indie.competitorsPerApp,
-    );
+  it('has no competitor cap on a self hosted instance', () => {
+    expect(SELF_HOSTED_LIMITS.competitorsPerApp).toBeNull();
   });
 });
 

@@ -42,6 +42,12 @@ describe('googlePlayLanguage', () => {
     expect(googlePlayLanguage('BR')).toBe('pt');
     expect(googlePlayLanguage('zz')).toBe('en');
   });
+
+  it('searches spanish, arabic and belgian storefronts in their own language', () => {
+    expect(googlePlayLanguage('uy')).toBe('es');
+    expect(googlePlayLanguage('qa')).toBe('ar');
+    expect(googlePlayLanguage('be')).toBe('nl');
+  });
 });
 
 describe('GooglePlayProvider', () => {

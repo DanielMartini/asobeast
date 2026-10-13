@@ -11,6 +11,25 @@ describe('storefrontLanguage', () => {
     expect(storefrontLanguage(country)).toBe(language);
   });
 
+  it.each([
+    ['uy', 'es'],
+    ['pe', 'es'],
+    ['do', 'es'],
+    ['be', 'nl'],
+    ['lu', 'fr'],
+    ['ma', 'fr'],
+    ['tn', 'fr'],
+    ['qa', 'ar'],
+    ['kw', 'ar'],
+    ['lb', 'ar'],
+    ['cy', 'el'],
+    ['ee', 'et'],
+    ['lv', 'lv'],
+    ['hr', 'hr'],
+  ])('maps the storefront %s to its main language %s', (country, language) => {
+    expect(storefrontLanguage(country)).toBe(language);
+  });
+
   it('returns null for a country outside the table', () => {
     expect(storefrontLanguage('zz')).toBeNull();
   });
